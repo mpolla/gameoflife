@@ -1,0 +1,25 @@
+# Process this file with autoconf to produce a configure script.
+AC_INIT(src/gameoflife.c)
+AM_CONFIG_HEADER(src/config.h)
+AM_INIT_AUTOMAKE(gameoflife, 0.01)
+
+# Checks for programs.
+AC_PROG_CC
+
+# Checks for libraries.
+AC_CHECK_LIB([pthread], [pthread_self], , [AC_MSG_ERROR(You need libpthread installed)])
+AC_CHECK_LIB([m], [sqrt], , [AC_MSG_ERROR(Can't find libm)])
+AC_CHECK_LIB([ncurses], [initscr], , [AC_MSG_ERROR(Can't find libncurses)])
+
+# Checks for header files.
+AC_HEADER_STDC
+AC_CHECK_HEADERS([stdlib.h string.h unistd.h ncurses.h])
+
+# Checks for typedefs, structures, and compiler characteristics.
+AC_C_CONST
+AC_C_INLINE
+
+# Checks for library functions.
+AC_CHECK_FUNCS([atexit])
+
+AC_OUTPUT([Makefile src/Makefile])
